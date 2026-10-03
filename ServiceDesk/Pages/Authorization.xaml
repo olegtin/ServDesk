@@ -1,0 +1,59 @@
+﻿<Page x:Class="ServiceDesk.Pages.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ServiceDesk.Pages"
+      Height="600" Width="400"
+            Title="Authorization">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+         <!--ЗАГОЛОВОК--> 
+        <Border Grid.Row="0" Background="{StaticResource PrimaryColor}" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Service Desk" 
+                  FontSize="22" FontWeight="Bold" 
+                  Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="30">
+            <Border Background="White" CornerRadius="10" Padding="25" 
+            BorderThickness="1" BorderBrush="#E0E0E0"
+            Style="{StaticResource ShadowEffect}">
+                <StackPanel>
+                    <TextBlock Text="Войдите в систему" 
+                      FontSize="22" FontWeight="Bold" 
+                      HorizontalAlignment="Center" 
+                      Margin="0,0,0,20"
+                      Foreground="{StaticResource PrimaryColor}"/>
+                    <TextBlock Text="Логин" 
+                      FontWeight="SemiBold" 
+                      FontSize="19"
+                      Margin="0,0,0,3"
+                      Foreground="{StaticResource PrimaryDarkColor}"/>
+                    <TextBox x:Name="Login" FontSize="18"
+                    Style="{StaticResource ModernTextBox}"
+                    Tag="Логин"/>
+                    <TextBlock Text="Пароль"
+                      FontWeight="SemiBold" 
+                      FontSize="18"
+                      Margin="0,5,0,3"
+                      Foreground="{StaticResource PrimaryDarkColor}"/>
+                    <PasswordBox Name="PasswordBox" FontSize="18"
+                       Style="{StaticResource ModernPasswordBox}"
+                       Tag="Пароль"/>
+
+                    <Button Content="Войти" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                    Click="Login_Click"
+                    Style="{StaticResource ModernRaisedDarkButton}"
+                    Margin="0,15,0,10" Height="50"/>
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

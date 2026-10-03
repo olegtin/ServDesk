@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63ef82e2939c49b49b6979e274bb5ed4" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="RequestsModel.Categories" Width="1.5" PointX="10.875" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RequestsModel.Requests" Width="1.5" PointX="13.125" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RequestsModel.Statuses" Width="1.5" PointX="10.875" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RequestsModel.StatusHistory" Width="1.5" PointX="15.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RequestsModel.Users" Width="1.5" PointX="10.875" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="RequestsModel.FK_Requests_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_Requests_AssignedTo" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_Requests_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_Requests_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_StatusHistory_Requests" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_StatusHistory_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_StatusHistory_User" ManuallyRouted="false" />
+        <AssociationConnector Association="RequestsModel.FK_Requests_DeletedBy" />
+        <AssociationConnector Association="RequestsModel.FK_StatusHistory_Statuses1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

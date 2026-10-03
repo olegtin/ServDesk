@@ -1,0 +1,67 @@
+<Page x:Class="ServiceDesk.Pages.TasksPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="TasksPage"
+      Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,10"
+                BorderBrush="#E0E0E0" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Список задач" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" x:Name="TaskFilterCombo" FontSize="20" Width="180" Height="32" Margin="0,0,10,0"
+                          SelectionChanged="TaskFilterCombo_SelectionChanged">
+                    <ComboBoxItem Content="Все" IsSelected="True"/>
+                    <ComboBoxItem Content="Невыполненные"/>
+                    <ComboBoxItem Content="Выполненные"/>
+                </ComboBox>
+                <Button Grid.Column="2" Content="Добавить" FontSize="18" Width="130" Height="42" Padding="5" Margin="0,0,10,0"
+                        Click="AddTask_Click" Style="{StaticResource ModernRaisedButton}"
+                        Background="#3498DB" Foreground="White"/>
+                <Button Grid.Column="3" Content="Выполнена" Width="140" Height="42" Margin="0,0,10,0"
+                        Click="CompleteTask_Click" Style="{StaticResource ModernOutlinedButton}"/>
+                <Button Grid.Column="4" Content="Удалить" Width="110" Height="42" Margin="0,0,10,0"
+                        Click="DeleteTask_Click" Style="{StaticResource ModernOutlinedButton}"
+                        BorderBrush="#E74C3C" Foreground="#E74C3C"/>
+                <Button Grid.Column="5" Content="Назад" Width="100" Height="42"
+                        Click="Back_Click" Style="{StaticResource ModernOutlinedButton}"/>
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="1" x:Name="TasksGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                  Background="White" BorderThickness="0" FontSize="20" RowHeight="38"
+                  AlternatingRowBackground="#F8F9FA" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding TaskID}" Width="60"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding TimeText}" Width="140"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="220"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding DescriptionText}" Width="*"/>
+                <DataGridTextColumn Header="Создал" Binding="{Binding CreatedByName}" Width="170"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding AssignedToName}" Width="170"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding StatusText}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="2" Background="#F8F9FA" Padding="8" CornerRadius="4" Margin="0,10,0,0">
+            <TextBlock x:Name="StatusText" Text="Готово" FontSize="11" Foreground="#7F8C8D"
+                       HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Page>

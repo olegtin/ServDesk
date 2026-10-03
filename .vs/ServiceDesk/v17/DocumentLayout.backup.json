@@ -1,0 +1,60 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{21BB8D24-106C-474A-8584-B0FDD3749C74}|ServiceDesk\\ServiceDesk.csproj|c:\\users\\oleg\\desktop\\shmyak\\servicedesk\\servicedesk\\pages\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{21BB8D24-106C-474A-8584-B0FDD3749C74}|ServiceDesk\\ServiceDesk.csproj|solutionrelative:servicedesk\\pages\\admindashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21BB8D24-106C-474A-8584-B0FDD3749C74}|ServiceDesk\\ServiceDesk.csproj|C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\servicedesk\\pages\\admindashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21BB8D24-106C-474A-8584-B0FDD3749C74}|ServiceDesk\\ServiceDesk.csproj|solutionrelative:servicedesk\\pages\\admindashboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminDashboard.xaml",
+              "DocumentMoniker": "C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\ServiceDesk\\Pages\\AdminDashboard.xaml",
+              "RelativeDocumentMoniker": "ServiceDesk\\Pages\\AdminDashboard.xaml",
+              "ToolTip": "C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\ServiceDesk\\Pages\\AdminDashboard.xaml",
+              "RelativeToolTip": "ServiceDesk\\Pages\\AdminDashboard.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-04T06:07:53.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminDashboard.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\ServiceDesk\\Pages\\AdminDashboard.xaml.cs",
+              "RelativeDocumentMoniker": "ServiceDesk\\Pages\\AdminDashboard.xaml.cs",
+              "ToolTip": "C:\\Users\\oleg\\Desktop\\shmyak\\ServiceDesk\\ServiceDesk\\Pages\\AdminDashboard.xaml.cs",
+              "RelativeToolTip": "ServiceDesk\\Pages\\AdminDashboard.xaml.cs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAowJYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T06:13:09.228Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

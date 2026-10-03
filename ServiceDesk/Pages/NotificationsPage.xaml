@@ -1,0 +1,92 @@
+<Page x:Class="ServiceDesk.Pages.NotificationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="620" d:DesignWidth="1100"
+      Title="NotificationsPage"
+      Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,10"
+                BorderBrush="#E0E0E0" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Уведомления" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" x:Name="FilterCombo" Width="180" FontSize="20" Height="34" Margin="0,0,10,0"
+                          SelectionChanged="FilterCombo_SelectionChanged">
+                    <ComboBoxItem Content="Все" IsSelected="True"/>
+                    <ComboBoxItem Content="Непрочитанные"/>
+                    <ComboBoxItem Content="Прочитанные"/>
+                </ComboBox>
+                <Button Grid.Column="2" Content="Прочитать" Width="135" Height="42" Margin="0,0,10,0"
+                        Click="MarkSelectedRead_Click" Style="{StaticResource ModernOutlinedButton}"/>
+                <Button x:Name="DeleteNotificationButton" Grid.Column="3" Content="Удалить" Width="110" Height="42" Margin="0,0,10,0"
+                        Click="DeleteSelected_Click" Style="{StaticResource ModernOutlinedButton}"
+                        BorderBrush="#E74C3C" Foreground="#E74C3C"/>
+                <Button Grid.Column="4" Content="Назад" Width="100" Height="42"
+                        Click="Back_Click" Style="{StaticResource ModernOutlinedButton}"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="AddNotificationPanel" Grid.Row="1" Background="White" CornerRadius="8" Padding="15" Margin="0,0,0,10"
+                BorderBrush="#E0E0E0" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Row="0" Grid.Column="0" x:Name="TitleBox" Height="34" Margin="0,0,10,0"
+                         MaxLength="150" FontSize="18"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="TargetUserCombo" FontSize="14" Height="34" Margin="0,0,10,0"
+                          DisplayMemberPath="FullName" SelectedValuePath="UserID"/>
+                <TextBox Grid.Row="0" Grid.Column="2" x:Name="MessageTextBox" Height="34" Margin="0,0,10,0"
+                         MaxLength="500" FontSize="18"/>
+                <Button Grid.Row="0" Grid.Column="3" Content="Добавить" FontSize="18" Height="45"
+                        Click="AddNotification_Click" Style="{StaticResource ModernRaisedButton}"
+                        Background="#3498DB" Foreground="White" Margin="5,5,0,0"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Заголовок" FontSize="11" Foreground="#7F8C8D"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="Получатель" FontSize="11" Foreground="#7F8C8D"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Сообщение" FontSize="11" Foreground="#7F8C8D"/>
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="2" x:Name="NotificationsGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                  Background="White" BorderThickness="0" FontSize="20" RowHeight="44"
+                  AlternatingRowBackground="#F8F9FA" SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Binding="{Binding CreatedAtText}" Width="140"/>
+                <DataGridTextColumn Header="Кому" Binding="{Binding TargetText}" Width="170"/>
+                <DataGridTextColumn Header="Заголовок" Binding="{Binding Title}" Width="200"/>
+                <DataGridTextColumn Header="Сообщение" Binding="{Binding Message}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding StatusText}" Width="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="3" Background="#F8F9FA" Padding="8" CornerRadius="4" Margin="0,10,0,0">
+            <TextBlock x:Name="StatusText" Text="Готово" FontSize="11" Foreground="#7F8C8D"
+                       HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Page>

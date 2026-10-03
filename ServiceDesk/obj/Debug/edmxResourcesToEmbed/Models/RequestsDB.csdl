@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RequestsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Category" FromRole="Categories" ToRole="Requests" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="AssignedTo" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Requests_Category" FromRole="Requests" ToRole="Categories" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Requests_AssignedTo" FromRole="Requests" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_Requests_CreatedBy" FromRole="Requests" ToRole="Users" />
+    <NavigationProperty Name="Statuses" Relationship="Self.FK_Requests_Status" FromRole="Requests" ToRole="Statuses" />
+    <NavigationProperty Name="StatusHistory" Relationship="Self.FK_StatusHistory_Requests" FromRole="Requests" ToRole="StatusHistory" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeletedAt" Type="DateTime" Precision="0" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <NavigationProperty Name="Users2" Relationship="RequestsModel.FK_Requests_DeletedBy" FromRole="Requests" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Status" FromRole="Statuses" ToRole="Requests" />
+    <NavigationProperty Name="StatusHistory" Relationship="Self.FK_StatusHistory_Statuses" FromRole="Statuses" ToRole="StatusHistory" />
+    <NavigationProperty Name="StatusHistory1" Relationship="RequestsModel.FK_StatusHistory_Statuses1" FromRole="Statuses" ToRole="StatusHistory" />
+  </EntityType>
+  <EntityType Name="StatusHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestID" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="ChangedBy" Type="Int32" Nullable="false" />
+    <Property Name="ChangedAt" Type="DateTime" Precision="0" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_StatusHistory_Requests" FromRole="StatusHistory" ToRole="Requests" />
+    <NavigationProperty Name="Statuses" Relationship="Self.FK_StatusHistory_Statuses" FromRole="StatusHistory" ToRole="Statuses" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_StatusHistory_User" FromRole="StatusHistory" ToRole="Users" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OldStatusID" Type="Int32" />
+    <NavigationProperty Name="Statuses1" Relationship="RequestsModel.FK_StatusHistory_Statuses1" FromRole="StatusHistory" ToRole="Statuses" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TelephoneNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_AssignedTo" FromRole="Users" ToRole="Requests" />
+    <NavigationProperty Name="Requests1" Relationship="Self.FK_Requests_CreatedBy" FromRole="Users" ToRole="Requests" />
+    <NavigationProperty Name="StatusHistory" Relationship="Self.FK_StatusHistory_User" FromRole="Users" ToRole="StatusHistory" />
+    <NavigationProperty Name="Requests2" Relationship="RequestsModel.FK_Requests_DeletedBy" FromRole="Users" ToRole="Requests" />
+  </EntityType>
+  <Association Name="FK_Requests_Category">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_AssignedTo">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="AssignedTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_CreatedBy">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Status">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusHistory_Requests">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StatusHistory" Type="Self.StatusHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="RequestID" />
+      </Principal>
+      <Dependent Role="StatusHistory">
+        <PropertyRef Name="RequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusHistory_Statuses">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+    <End Role="StatusHistory" Type="Self.StatusHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="StatusHistory">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusHistory_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="StatusHistory" Type="Self.StatusHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="StatusHistory">
+        <PropertyRef Name="ChangedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RequestsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+    <EntitySet Name="StatusHistory" EntityType="Self.StatusHistory" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Requests_Category" Association="Self.FK_Requests_Category">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_AssignedTo" Association="Self.FK_Requests_AssignedTo">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_CreatedBy" Association="Self.FK_Requests_CreatedBy">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Status" Association="Self.FK_Requests_Status">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusHistory_Requests" Association="Self.FK_StatusHistory_Requests">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="StatusHistory" EntitySet="StatusHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusHistory_Statuses" Association="Self.FK_StatusHistory_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="StatusHistory" EntitySet="StatusHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusHistory_User" Association="Self.FK_StatusHistory_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="StatusHistory" EntitySet="StatusHistory" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RequestsModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RequestsModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_Requests_DeletedBy" Association="RequestsModel.FK_Requests_DeletedBy">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusHistory_Statuses1" Association="RequestsModel.FK_StatusHistory_Statuses1">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="StatusHistory" EntitySet="StatusHistory" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_Requests_DeletedBy">
+    <End Type="RequestsModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="RequestsModel.Requests" Role="Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="DeletedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusHistory_Statuses1">
+    <End Type="RequestsModel.Statuses" Role="Statuses" Multiplicity="0..1" />
+    <End Type="RequestsModel.StatusHistory" Role="StatusHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="StatusHistory">
+        <PropertyRef Name="OldStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

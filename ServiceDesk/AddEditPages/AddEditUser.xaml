@@ -1,0 +1,68 @@
+﻿<Page x:Class="ServiceDesk.AddEditPages.AddEditUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ServiceDesk.AddEditPages"
+      mc:Ignorable="d" 
+          d:DesignHeight="400" d:DesignWidth="800"
+  Title="AddEditClient">
+
+    <Grid Margin="0,0,0,0" Grid.RowSpan="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="69"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Фамилия" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="0"></TextBlock>
+        <TextBlock Text="Имя" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="1"></TextBlock>
+        <TextBlock Text="Отчество" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="2"></TextBlock>
+        <TextBlock Text="Отдел" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="3"></TextBlock>
+        <TextBlock Text="Роль" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="4"></TextBlock>
+        <TextBlock Text="Телефон" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="5"></TextBlock>
+        <TextBlock Text="Email" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="6"></TextBlock>
+        <TextBlock Text="Логин" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="7"></TextBlock>
+        <TextBlock Text="Пароль" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" Grid.Row="8"></TextBlock>
+        <TextBox x:Name="LastName" Grid.Column="1" Text="{Binding LastName}" FontSize="22" Grid.Row="0" MaxLength="100" ></TextBox>
+        <TextBox x:Name="FirstName" Grid.Column="1" Text="{Binding FirstName}" FontSize="22" Grid.Row="1" MaxLength="100"></TextBox>
+        <TextBox x:Name="Patronymic" Grid.Column="1" Text="{Binding Patronymic}" FontSize="22" Grid.Row="2" MaxLength="100"></TextBox>
+        <TextBox x:Name="Department" Grid.Column="1" Text="{Binding Department}" FontSize="22" Grid.Row="3" MaxLength="100"></TextBox>
+        <ComboBox x:Name="ComboRole" 
+          Grid.Column="1" 
+          Grid.Row="4" 
+          FontSize="22"
+          SelectedValuePath="Content" 
+          SelectedValue="{Binding Role, Mode=TwoWay}">
+            <ComboBoxItem Content="Пользователь"/>
+            <ComboBoxItem Content="IT-специалист"/>
+            <ComboBoxItem Content="Администратор"/>
+        </ComboBox>
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+            <TextBox x:Name="TelephoneNum" Text="{Binding TelephoneNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PreviewTextInput="TelephoneNum_PreviewTextInput"
+                     DataObject.Pasting="TelephoneNum_Pasting"
+                     TextChanged="TelephoneNum_TextChanged"
+                     FontSize="22" Width="260" MaxLength="18"/>
+            <CheckBox x:Name="FreePhoneCheckBox" Content="Нестандартный номер"
+                      VerticalAlignment="Center" Margin="12,0,0,0"
+                      Checked="FreePhoneCheckBox_Changed"
+                      Unchecked="FreePhoneCheckBox_Changed"/>
+        </StackPanel>
+        <TextBox x:Name="Email" Grid.Column="1" Text="{Binding Email}" FontSize="22" Grid.Row="6" MaxLength="100"></TextBox>
+        <TextBox x:Name="Логин" Grid.Column="1" Text="{Binding Login}" FontSize="22" Grid.Row="7" MaxLength="100"></TextBox>
+        <PasswordBox x:Name="PasswordBox" Grid.Column="1" FontSize="22" Grid.Row="8" MaxLength="100"></PasswordBox>
+        <Button Content="Сохранить" Grid.Row="12" FontSize="22" Name="BtnSave" Click="BtnSave_Click" Grid.Column="1" Height="52" Style="{StaticResource ModernOutlinedButton}"/>
+        <Button Content="Назад" Grid.Row="12" FontSize="22" Name="BtnBack" Click="BtnBack_Click" Grid.Column="0" Height="52" Style="{StaticResource ModernOutlinedButton}"/>
+    </Grid>
+</Page>
